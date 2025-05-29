@@ -1,38 +1,54 @@
-
 <!DOCTYPE html>
 
 <html lang="de">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SnoozeWave – Home</title>
+<title>SnoozeWave – Shop</title>
 <link href="css/style.css" rel="stylesheet"/>
 <script defer="" src="js/script.js"></script>
 <style>
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main {
-    flex: 1;
-}
-footer {
-    margin-top: auto;
-}
-
-body { font-family: 'Minecraft', monospace !important; }
+        .product-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem;
+            border-bottom: 1px solid #ccc;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .product-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .product-image {
+            flex: 1;
+            background-image: url('https://static.wikia.nocookie.net/colors/images/c/cd/00ff00.png/revision/latest/scale-to-width-down/1200?cb=20231102223543');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            border-radius: 20px;
+            margin: 1rem;
+        }
+        .product-description {
+            flex: 1;
+            padding: 1rem;
+            text-align: left;
+        }
+        .buy-button {
+            background-color: #ccc;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1rem;
+            cursor: not-allowed;
+            margin-top: 1rem;
+        }
+        .buy-button:hover {
+            background-color: #aaa;
+        }
+    
 body { font-family: 'Minecraft', monospace !important; }
 body, button, .faq-question, .buy-button {
-    font-family: 'Minecraft', monospace !important;
-}
-
-body {
     font-family: 'Minecraft', monospace !important;
 }
 
@@ -97,6 +113,30 @@ button, .faq-question, .buy-button {
     font-size: 1rem !important;
     padding: 0.75rem 1.5rem !important;
     border-radius: 12px !important;
+}
+
+.shop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eadcff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    gap: 2rem;
+}
+.shop-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.shop-item img {
+    max-width: 300px;
+    border-radius: 20px;
+}
+.shop-item .content {
+    flex: 1;
+}
+.shop-item .buy-button {
+    margin-top: 1rem;
 }
 
 html {
@@ -272,15 +312,9 @@ button:hover, .buy-button:hover, .faq-question:hover {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-.highlight-snooze {
-    background-color: #eaffea !important;
-    border-right: 3px solid limegreen;
-    border-left: 3px solid limegreen;
-    font-weight: bold;
-}
-</style></head>
-<body><header>
+</style>
+</head>
+<body style="background-color: #e7dcff; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh;"><header>
 <div class="logo-area">
 <div class="logo-placeholder"><img alt="Bild" src="https://static.wikia.nocookie.net/colors/images/c/cd/00ff00.png/revision/latest/scale-to-width-down/1200?cb=20231102223543" style="max-width:100%;border-radius:12px;margin:1rem 0;"/></div>
 <div class="logo-text">SnoozeWave</div>
@@ -294,13 +328,35 @@ button:hover, .buy-button:hover, .faq-question:hover {
 <li><a href="contact.html">Contact</a></li>
 </ul>
 </nav>
-</header><main class="">
-<section class="hero" style="text-align: center; animation: fadeIn 1s ease-in-out;">
-<img alt="Header" src="https://static.wikia.nocookie.net/colors/images/c/cd/00ff00.png/revision/latest/scale-to-width-down/1200?cb=20231102223543" style="width: 200px; height: auto; margin: 1rem auto; display: block; border-radius: 20px;"/><h1>Willkommen bei SnoozeWave</h1>
-<p>Bei SnoozeWave verschmelzen Technologie, Design und Komfort zu einem einzigartigen Schlaferlebnis. Unser Ziel ist es, Ihre Nachtruhe durch intelligente Produkte zu optimieren.</p>
-<p>Von der Temperaturregelung bis zur intelligenten Schlafanalyse – wir bieten Lösungen, die Ihren Alltag verbessern.</p>
+</header><main class="" style="flex: 1; display: flex; flex-direction: column;">
+<section class="shop">
+<h2>Unser Produktportfolio</h2>
+<p>Unsere Produkte sind speziell dafür konzipiert, Ihren Schlaf zu verbessern und gleichzeitig höchsten Komfort und Stil zu bieten.</p>
+<div class="product-section">
+<div class="product-image"></div>
+<div class="product-description">
+<h3>Smart-Kissen</h3>
+<p>Das SnoozeWave Smart-Kissen bietet personalisierte Wärmeregulierung und integrierte Sensoren für Ihre Schlafdaten.</p>
+<button class="buy-button" disabled="" style="">Jetzt kaufen</button>
+</div>
+</div>
+<div class="product-section">
+<div class="product-image"></div>
+<div class="product-description">
+<h3>Kissenbezug mit Sensor</h3>
+<p>Unser spezieller Kissenbezug ist waschbar und enthält eine dünne Sensorik-Schicht für Ihre Schlafanalyse.</p>
+<button class="buy-button" disabled="" style="">Jetzt kaufen</button>
+</div>
+</div>
+<div class="product-section">
+<div class="product-image"></div>
+<div class="product-description">
+<h3>SnoozeWave App</h3>
+<p>Die zugehörige App analysiert Ihre Daten und gibt Ihnen individuelle Empfehlungen für besseren Schlaf.</p>
+<button class="buy-button" disabled="" style="">Jetzt kaufen</button>
+</div>
+</div>
 </section>
-<section class="features" style="animation: fadeIn 1.2s ease-in-out; padding: 3rem 1rem; width: 100%; background-color: #e7dcff; border-radius: 0;"><h2 style="text-align: center; margin-top: 4rem;">SnoozeWave im Vergleich</h2><table style="margin: 2rem auto; border-collapse: collapse; width: 90%; text-align: center;"><thead><tr><th>Feature</th><th>Emma Elite</th><th>Ergonomic Pillow Amazon</th><th>Blackroll Recovery Pillow</th><th>Xiaomi Mijia Smart</th><th class="highlight-snooze">SnoozeWave</th></tr></thead><tbody><tr><td>Preis</td><td>165€</td><td>54,99€</td><td>99,99€</td><td>67,69€</td><td class="highlight-snooze">139,99€</td></tr><tr><td>Schlaftracking</td><td>✖</td><td>✖</td><td>✖</td><td>✔</td><td class="highlight-snooze">✔</td></tr><tr><td>Ergonomisches Design</td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td class="highlight-snooze">✔</td></tr><tr><td>Temperaturregulierung</td><td>✖</td><td>✖</td><td>✖</td><td>✖</td><td class="highlight-snooze">✔</td></tr><tr><td>Bluetooth-Lautsprecher</td><td>✖</td><td>✖</td><td>✖</td><td>✖</td><td class="highlight-snooze">✔</td></tr><tr><td>Hochwertige Verpackung</td><td>✖</td><td>✖</td><td>✖</td><td>✖</td><td class="highlight-snooze">✔</td></tr><tr><td>Baumwolle</td><td>✖</td><td>✖</td><td>✖</td><td>✖</td><td class="highlight-snooze">✔</td></tr></tbody></table></section>
 </main><footer>
 <p>© 2025 SnoozeWave. Alle Rechte vorbehalten.</p>
 </footer></body>
