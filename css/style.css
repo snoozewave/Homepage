@@ -4,12 +4,14 @@ html {
 }
 
 body {
-    font-family: 'Helvetica Neue', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #f0e9ff, #d6c8ff);
-    color: #1c1c1c;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
 }
+
 header {
     display: flex;
     justify-content: space-between;
@@ -43,7 +45,7 @@ nav ul {
 }
 nav ul li a {
     text-decoration: none;
-    color: #1c1c1c;
+    color: #000000;
     font-weight: 500;
 }
 .hero, .shop, .about, .faq, .contact {
@@ -51,9 +53,8 @@ nav ul li a {
     text-align: center;
 }
 .image-placeholder, .product-placeholder, .team-member {
-    width: 400px;
-    height: 400px;
-    background-color: #ffffff;
+    width: 300px;
+    height: 200px;
     margin: 1rem auto;
     display: flex;
     align-items: center;
@@ -61,7 +62,7 @@ nav ul li a {
     font-style: italic;
 }
 .faq-question {
-    background-color: #c9b6ff;
+    background-color: #000000;
     border: none;
     padding: 1rem;
     width: 100%;
@@ -72,11 +73,11 @@ nav ul li a {
     transition: background-color 0.3s ease;
 }
 .faq-question:hover {
-    background-color: #b39aff;
+    background-color: #000000;
 }
 .faq-answer {
     display: none;
-    background-color: #eee4ff;
+    background-color: #000000;
     padding: 1rem;
     animation: fadeIn 0.4s ease-in-out;
 }
