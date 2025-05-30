@@ -300,15 +300,50 @@ button:hover, .buy-button:hover, .faq-question:hover {
 </main><footer>
 <p>© 2025 SnoozeWave. Alle Rechte vorbehalten.</p>
 </footer>
-<form action="https://formsubmit.co/snoozewave.contact@gmail.com" method="POST" style="max-width: 600px; margin: auto;">
-  <input type="hidden" name="_captcha" value="false">
-  <textarea name="message" placeholder="Nachricht anonym senden..." required 
-    style="width: 100%; height: 150px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 10px;"></textarea>
-  <button type="submit" 
-    style="background-color: #7c3aed; color: white; padding: 10px 20px; border: none; margin-bottom: 10px; border-radius: 8px; cursor: pointer;">
-    Senden
-  </button>
+<!-- Kommentarformular -->
+<h2>Live Nachricht senden</h2>
+<form id="comment-form" style="max-width:600px;margin:2rem auto;display:flex;gap:0.5rem;">
+  <input id="comment-input" type="text" placeholder="Deine Nachricht..." required style="flex:1;padding:0.75rem;font-size:1rem;border-radius:0.75rem;border:1px solid #ccc;" />
+  <button id="submit-btn" type="submit" style="background:#7c3aed;color:white;border:none;padding:0.75rem 1rem;border-radius:0.75rem;cursor:pointer;">Absenden</button>
 </form>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyB0JSeJD3M-IAUQ-YCf_xtBmA9BsGX7dis",
+    authDomain: "snoozewave-comments.firebaseapp.com",
+    projectId: "snoozewave-comments",
+    storageBucket: "snoozewave-comments.firebasestorage.app",
+    messagingSenderId: "604975879327",
+    appId: "1:604975879327:web:ed61ec0bf858734808feaa",
+    measurementId: "G-YCRMRYBL0F",
+    databaseURL: "https://snoozewave-comments-default-rtdb.firebaseio.com"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  document.getElementById("comment-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const input = document.getElementById("comment-input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    try {
+      const snapshot = await db.ref("comments").once("value");
+      const comments = snapshot.val() || [];
+      comments.push({ text });
+      await db.ref("comments").set(comments);
+      input.value = "";
+    } catch (error) {
+      alert("Fehler beim Senden.");
+      console.error(error);
+    }
+  });
+</script>
 
 </body>
 </html>
