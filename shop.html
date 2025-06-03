@@ -1,372 +1,321 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SnoozeWave – Shop</title>
-<link href="css/style.css" rel="stylesheet"/>
-<script defer="" src="js/script.js"></script>
-<style>
-        .product-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2rem;
-            border-bottom: 1px solid #ccc;
-            animation: fadeIn 1s ease-in-out;
-        }
-        .product-section:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-        .product-image {
-            flex: 1;
-            background-image: url('https://static.wikia.nocookie.net/colors/images/c/cd/00ff00.png/revision/latest/scale-to-width-down/1200?cb=20231102223543');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            border-radius: 20px;
-            margin: 1rem;
-        }
-        .product-description {
-            flex: 1;
-            padding: 1rem;
-            text-align: left;
-        }
-        .buy-button {
-            background-color: #ccc;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 9999px;
-            font-size: 1rem;
-            cursor: not-allowed;
-            margin-top: 1rem;
-        }
-        .buy-button:hover {
-            background-color: #aaa;
-        }
-    
-body { font-family: 'Minecraft', monospace !important; }
-body, button, .faq-question, .buy-button {
-    font-family: 'Minecraft', monospace !important;
-}
-
-header {
-    background-color: #e7dcff;
-    border-bottom: 2px solid #c9b6ff;
-}
-footer {
-    background-color: #f0e4ff;
-    border-top: 2px solid #d7bfff;
-    color: #5e2b97;
-    text-align: center;
-    padding: 1rem 0;
-}
-button, .faq-question, .buy-button {
-    background-color: #d7bfff !important;
-    border: 2px solid #b589f9 !important;
-    color: #1d042b !important;
-}
-button:hover {
-    background-color: #e7d0ff !important;
-}
-
-button, .faq-question, .buy-button {
-    background-color: #d7bfff !important;
-    border: none !important;
-    color: #1d042b !important;
-    border-radius: 12px;
-    padding: 0.6rem 1.2rem;
-}
-button:hover {
-    background-color: #e7d0ff !important;
-}
-
-body, button, .faq-question, .buy-button, h1, h2, h3, h4, h5, h6, p, a, td, th {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main {
-    flex: 1;
-}
-footer {
-    margin-top: auto;
-    padding: 1rem 0;
-    background-color: #f0e4ff;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #5e2b97;
-    border-top: 2px solid #d7bfff;
-}
-button, .faq-question, .buy-button {
-    font-size: 1rem !important;
-    padding: 0.75rem 1.5rem !important;
-    border-radius: 12px !important;
-}
-
-.shop-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #eadcff;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    gap: 2rem;
-}
-.shop-item:nth-child(even) {
-    flex-direction: row-reverse;
-}
-.shop-item img {
-    max-width: 300px;
-    border-radius: 20px;
-}
-.shop-item .content {
-    flex: 1;
-}
-.shop-item .buy-button {
-    margin-top: 1rem;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-body, p, li, a, td, th {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-h1 {
-    font-size: 2.5rem;
-}
-h2 {
-    font-size: 2rem;
-}
-h3 {
-    font-size: 1.6rem;
-}
-button, .faq-question, .buy-button {
-    font-size: 1.1rem !important;
-    padding: 1rem 1.75rem !important;
-}
-
-/* Smooth Scroll */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Fade-In Animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop – SnoozeWave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #9e7eff;
+      --bg: linear-gradient(135deg, #e0d1e6 0%, #f2e4f7 100%);
+      --text: #222;
+      --muted: #666;
+      --radius: 1.5rem;
+      --position: fixed;
     }
-    to {
-        opacity: 1;
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
-}
-section, .shop-item, .value-box, .faq-question, .faq-answer, main {
-    animation: fadeInUp 0.8s ease-in-out both;
-}
 
-/* Button Hover Animation */
-button, .buy-button, .faq-question {
-    transition: all 0.3s ease;
-}
-button:hover, .buy-button:hover, .faq-question:hover {
-    background-color: #d1aaff !important;
-}
+   body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* Shadow for shop and values */
-.shop-item, .value-box, .faq-answer {
-}
-.shop-item:hover, .value-box:hover, .faq-answer:hover {
-}
+    header {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* Footer soft shadow */
-footer {
-}
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
 
-body, p, li, td, th {
-}
-h1, h2, h3, h4, h5, h6 {
-}
-.secondary-text {
-}
-a, a:visited {
-    transition: color 0.3s ease;
-}
-a:hover {
-}
-.highlight-pink {
-}
-.highlight-turquoise {
-}
-.highlight-yellow {
-}
-.highlight-orange {
-}
-.highlight-purple {
-}
-.highlight-cyan {
-}
+    main {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-.highlight-blue { color: #0049FF; }
-.highlight-pink { color: #FF00ED; }
-.highlight-turquoise { color: #00FFC3; }
-.highlight-yellow { color: #FFE400; }
-.highlight-orange { color: #FF9000; }
-.highlight-purple { color: #B800FF; }
-.highlight-cyan { color: #00E5FF; }
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      z-index: 1;
+    }
 
-.highlight-gradient {
-    background: linear-gradient(90deg, #FFE400, #FF9000, #B800FF, #00E5FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    font-weight: bold;
-}
+    p.lead {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
 
-/* Slide/Fade */
-@keyframes fadeInSlide {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-section, .shop-item, .faq-question, .faq-answer, .value-box {
-  animation: fadeInSlide 0.6s ease-out both;
-}
+    .cta {
+      margin-top: 2rem;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(158, 126, 255, 0.25);
+      transition: all 0.3s ease;
+      z-index: 1;
 
-/* Button Effekt */
-button, .buy-button, .faq-question {
-}
-button:hover, .buy-button:hover, .faq-question:hover {
-  background-color: #dabfff !important;
-}
+      display: block;
+      margin: 4rem auto 0;
+      width: fit-content;
+    }
 
-/* Subtle glow */
-.value-box:hover, .faq-answer:hover {
-}
+    .cta:hover {
+      box-shadow: 0 15px 25px rgba(158, 126, 255, 0.35);
+      transform: translateY(-2px);
+    }
 
-.faq-question {
-  border: 2px solid transparent;
-}
-.faq-question:hover {
-  border-color: #c69eff;
-}
+    .mockup {
+      margin-top: 3rem;
+      max-width: 45vw;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
 
-/* Scroll Reveal mit Verzögerung */
-}
-  opacity: 0;
-}
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+    }
 
-/* Card Lift-Effekt */
-.shop-item:hover, .value-box:hover, .faq-answer:hover {
-}
 
-/* Button Ripple Effekt */
-  content: "";
-  position: absolute;
-  background: rgba(255,255,255,0.4);
-  border-radius: 100%;
-  width: 0;
-  height: 0;
-  opacity: 0;
-  transition: width 0.5s ease, height 0.5s ease, opacity 1s;
-}
-  width: 120px;
-  height: 120px;
-  opacity: 1;
-  transition: 0s;
-}
+    .product-section {
+      margin-top: 6rem;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 
-/* Container Animate On Hover */
-.shop-item, .value-box {
-}
+    .product {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-/* Floating Animation (z.B. Icon-Deko) */
-}
-}
+    .product img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
 
-/* Text Shadow Glow */
-  text-shadow: 0 0 5px #fff, 0 0 10px #c49dff, 0 0 15px #ac6cff;
-}
+    .product h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
 
-/* Animated Background */
-  background: linear-gradient(-45deg, #e7dcff, #f0e5ff, #e7dcff, #f0e5ff);
-  background-size: 400% 400%;
-}
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    .product p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
 
-.buy-button {
-    transition: all 0.3s ease-in-out !important;
-}
-.buy-button:hover {
-    transform: scale(1.05);
-    background-color: #c9b6ff !important;
-    box-shadow: 0 0 12px rgba(150, 100, 255, 0.4);
-}
-</style>
+    .locked-btn {
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: not-allowed;
+      opacity: 0.7;
+      box-shadow: 0 8px 20px rgba(158, 126, 255, 0.25);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .locked-btn:hover {
+      background: #8762f3;
+      transform: translateY(-2px);
+    }
+
+    .features {
+      margin-top: 5rem;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 5rem 0 2rem;
+    }
+
+ .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0rem 0rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 300px;
+      right: 10%;
+      top: 20%;
+      background: url('https://media.discordapp.net/attachments/1285987035844444231/1379144513930526761/6e38ba98-09b5-4fd6-b4c0-3ca61503aa97.png?ex=683f2beb&is=683dda6b&hm=85542dcb2b0ac71f078b5d50f9fa792bdbeca9bb993c798a64aab612ffac4993&=&format=webp&quality=lossless&width=233&height=350') no-repeat center/contain;
+      filter: blur(1px) brightness(1.2);
+      opacity: 0.25;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero svg.background-circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+  </style>
+
+<!-- AOS Animation Library -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({ duration: 1000, once: true });
+  });
+</script>
+
 </head>
-<body style="background-color: #e7dcff; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh;"><header>
-<div class="logo-area">
-<div class="logo-placeholder"><img alt="Bild" src="/8000x_transparent.png" style="max-width:100%;border-radius:12px;margin:1rem 0;"/></div>
-<div class="logo-text">SnoozeWave</div>
-</div>
-<nav style="display: flex; justify-content: center;">
-<ul style="display: flex; gap: 2rem; justify-content: center; list-style: none; padding: 0;">
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Shop</a></li>
-<li><a href="about.html">Über Uns</a></li>
-<li><a href="questions.html">Fragen</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-</nav>
-</header><main class="" style="flex: 1; display: flex; flex-direction: column;">
-<section class="shop">
-<h2>Unser Produktportfolio</h2>
-<p>Unsere Produkte sind speziell dafür konzipiert, Ihren Schlaf zu verbessern und gleichzeitig höchsten Komfort und Stil zu bieten.</p>
-<div class="product-section">
-<div class="product-image"></div>
-<div class="product-description">
-<h3>Smart-Kissen</h3>
-<p>Das SnoozeWave Smart-Kissen bietet personalisierte Wärmeregulierung und integrierte Sensoren für Ihre Schlafdaten.</p>
-<button class="buy-button" disabled="" style="">Jetzt kaufen</button>
-</div>
-</div>
-<div class="product-section">
-<div class="product-image"></div>
-<div class="product-description">
-<h3>Kissenbezug mit Sensor</h3>
-<p>Unser spezieller Kissenbezug ist waschbar und enthält eine dünne Sensorik-Schicht für Ihre Schlafanalyse.</p>
-<button class="buy-button" disabled="" style="">Jetzt kaufen</button>
-</div>
-</div>
-<div class="product-section">
-<div class="product-image"></div>
-<div class="product-description">
-<h3>SnoozeWave App</h3>
-<p>Die zugehörige App analysiert Ihre Daten und gibt Ihnen individuelle Empfehlungen für besseren Schlaf.</p>
-<button class="buy-button" disabled="" style="">Jetzt kaufen</button>
-</div>
-</div>
-</section>
-</main><footer>
-<p>© 2025 SnoozeWave. Alle Rechte vorbehalten.</p>
-</footer></body>
+<body>
+<header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379147609712627763/8000x_transparent.png?ex=683f2ecd&is=683ddd4d&hm=10d82b48f419b06fe7ebbc6fe41321cf75597928df2e6d3565c13c2a41ad8670&=&format=webp&quality=lossless&width=934&height=934" alt="Logo" style="height: 40px; width: 40px;" />
+      <h2 data-aos="fade-up">SnoozeWave</h2>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Über uns</a>
+      <a href="faq.html">Fragen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <section data-aos="fade-up" class="hero">
+      <h1>Die Zukunft des Schlafes</h1>
+      <p data-aos="fade-up" class="lead">Das erste smarte Wellness-Kissen mit Wärme, App & Klang</p>
+      <a href="#produkte" class="cta">Jetzt vorbestellen</a>
+    </section>
+
+    <section data-aos="fade-up" class="features">
+      <div>
+        <div data-aos="fade-up" class="feature-icon">🔥</div>
+        <strong>Wärmetechnologie</strong>
+      </div>
+      <div>
+        <div data-aos="fade-up" class="feature-icon">📱</div>
+        <strong>App-Integration</strong>
+      </div>
+      <div>
+        <div data-aos="fade-up" class="feature-icon">🌱</div>
+        <strong>Nachhaltige Materialien</strong>
+      </div>
+      <div>
+        <div data-aos="fade-up" class="feature-icon">🔌</div>
+        <strong>USB-C Ladeanschluss</strong>
+      </div>
+    </section>
+
+    <h2 data-aos="fade-up" class="section-title">Varianten & Vorbestellung</h2>
+    <section data-aos="fade-up" id="produkte" class="product-section">
+      <div data-aos="fade-up" class="product">
+        <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379156150812934175/PILLOWWW.png?ex=683f36c1&is=683de541&hm=6959741b67912a93d7d503a70c12fd82800b1fdfbdf67b2fcffd501d208d359a&=&format=webp&quality=lossless" alt="Kissen-Mockup">
+        <h3 data-aos="fade-up">SnoozeWave Kissen</h3>
+        <p data-aos="fade-up">Smartes Kissen mit Temperatur- & Klangtechnologie</p>
+        <span class="locked-btn">Kaufen (bald verfügbar)</span>
+      </div>
+      <div data-aos="fade-up" class="product">
+        <img data-aos="zoom-in" src="https://pixum-cms.imgix.net/79kl6vWB1oGpZ8LkL8i637/844f81def570990a543de94df039f82a/fge_kissen_mix_30x30_60x40_designs_neutral_kv_2024_export_contentful_mobile_int.png?auto=compress,format&trim=false&w=600" alt="Wechselbezug">
+        <h3 data-aos="fade-up">Wechselbezug</h3>
+        <p data-aos="fade-up">Hochwertiger, atmungsaktiver Ersatzbezug</p>
+        <span class="locked-btn">Kaufen (bald verfügbar)</span>
+      </div>
+      <div data-aos="fade-up" class="product">
+        <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1369301096241303582/1375494516005404682/Iphone_16_App.png?ex=683f1398&is=683dc218&hm=26f6d9c2ff1e344b45f0bc30bf3a8c16676120cf2838364d9131b0e95cafeebd&=&format=webp&quality=lossless&width=152&height=308" alt="App Mockup">
+        <h3 data-aos="fade-up">SnoozeWave App</h3>
+        <p data-aos="fade-up">Schlafdaten, Kissensteuerung & Wellness-Sounds</p>
+        <span class="locked-btn">Download (bald verfügbar)</span>
+      </div>
+    </section>
+
+    <h2 data-aos="fade-up" class="section-title">Lieferung & Zahlung</h2>
+    <section data-aos="fade-up" class="features">
+      <div>
+        <div data-aos="fade-up" class="feature-icon">🚚</div>
+        <strong>Versand ab November</strong>
+      </div>
+      <div>
+        <div data-aos="fade-up" class="feature-icon">↩️</div>
+        <strong>Kostenloser Rückversand (DACH)</strong>
+      </div>
+      <div>
+        <div data-aos="fade-up" class="feature-icon">💳</div>
+        <strong>Sicher bezahlen: Kreditkarte, PayPal, Apple Pay</strong>
+      </div>
+    </section>
+
+    <h2 data-aos="fade-up" class="section-title">Vertrauen</h2>
+    <p data-aos="fade-up" class="lead">⭐️⭐️⭐️⭐️⭐️ – Bald verfügbar: Nutzerstimmen & Pressemeinungen</p>
+
+    <div style="margin-top: 6rem;">
+      <a href="index.html" class="cta">Zurück zur Startseite</a>
+    </div>
+  </main>
+
+  <script>
+    document.querySelector('a[href="#produkte"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector('#produkte');
+      const offset = -80; // leicht weniger scrollen
+      const topPos = target.getBoundingClientRect().top + window.scrollY + offset;
+      window.scrollTo({ top: topPos, behavior: 'smooth' });
+    });
+  </script>
+</body>
 </html>
+
