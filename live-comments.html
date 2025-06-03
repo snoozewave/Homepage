@@ -2,276 +2,190 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Live Kommentare – SnoozeWave</title>
+  <meta charset="UTF-8">
+  <title>Admin-Kommentare</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   <style>
     body {
-  background: linear-gradient(to bottom, #ffffff, #ede9fe);
-  min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  padding: 2rem;
-
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen;
-      background-color: #f9f9ff;
-      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #ede9fe);
       padding: 2rem;
-      color: #111;
     }
     h1 {
-      color: #7c3aed;
       text-align: center;
-      margin-bottom: 2rem;
+      color: #000;
     }
-    .comment-box {
+    .comment {
+      background: white;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+    .delete-btn {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    #overlay {
   display: flex;
-  flex-direction: row;
-  min-height: 160px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #f5f3ff;
+  z-index: 9999;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #f5f3ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #pw-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  max-width: 320px;
   width: 100%;
   box-sizing: border-box;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-  background: linear-gradient(to bottom, #ffffff, #ede9fe);
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.25);
-      background-color: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 1rem;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      max-width: 320px;
+      text-align: center;
+    }
+    #pw-box input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #pw-box button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #6b21a8;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
   
-button:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
-  transition: all 0.2s ease;
+  #pw-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  max-width: 320px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
 }
+    animation: fadeIn 0.6s ease;
+  }
+  .comment {
+    animation: slideIn 0.4s ease;
+  }
+  .delete-btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
-
-
-
-<style>
-#password-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: linear-gradient(to bottom right, #ede9fe, #ede9fe);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-#password-box {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-  padding: 2rem;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  max-width: 300px;
-  width: 90%;
-}
-
-#password-box input {
-  padding: 0.8rem;
-  font-size: 1rem;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-}
-
-#password-box button {
-  background: #7c3aed;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-</style>
-
-<div id="password-overlay">
-  <div id="password-box">
-    <h2>🧠 Admin-Zugang</h2>
-    <p>Bitte Passwort eingeben, um fortzufahren.</p>
-    <input type="password" id="pw-input" placeholder="Passwort">
-    <button onclick="checkPassword()">Los geht's!</button>
-    <p id="pw-feedback" style="margin-top:1rem; color: #dc2626;"></p>
+  <div id="overlay">
+    <div id="pw-box">
+      <h2>🔐 Admin Zugang</h2>
+      <input type="password" id="pw" placeholder="Passwort eingeben">
+      <button onclick="checkPassword()">Los!</button>
+      <p id="pw-msg" style="color:red; margin-top: 0.5rem;"></p>
+    </div>
   </div>
-</div>
 
-<script>
-function checkPassword() {
-  const correct = "snusadmin1";
-  const input = document.getElementById("pw-input").value;
-  const feedback = document.getElementById("pw-feedback");
-  if (input === correct) {
-    document.getElementById("password-overlay").style.display = "none";
-  } else {
-    feedback.textContent = "😅 Falsches Passwort – versuch's nochmal!";
-  }
-}
-</script>
-
-  <h1 style="font-size: 2.2rem; color: #000000;">Live Kommentare</h1>
-  <div id="comments-container" style="max-width: 800px; margin: 0 auto;">⏳ Kommentare werden geladen...</div>
-
-<h2 style="text-align:center; color:#000000; margin-top:3rem; font-size: 2.2rem;">
-  Beantwortete Kommentare
-  <button id="toggle-archive" style="margin-left:1rem; font-size: 1.3rem; font-weight: bold; border-radius: 100px; transition: all 0.3s ease; width: 2.5rem; height: 2.5rem; display: inline-flex; align-items: center; justify-content: center; background: #ede9fe; color: #6b21a8; border: 1px solid #d8b4fe; border-radius: 6px; padding: 4px 10px; cursor: pointer; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.15); background: #ede9fe; color: #6b21a8;">▼</button>
-</h2>
-<div id="answered-container" style="max-width: 800px; margin: 0 auto;"></div>
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js">
-
-</script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js">
-
-</script>
+  <h1>📋 Live-Kommentare verwalten</h1>
+  <div id="comments-container">⏳ Kommentare werden geladen...</div>
 
   <script>
-    // Deine Firebase-Konfiguration
     const firebaseConfig = {
       apiKey: "AIzaSyB0JSeJD3M-IAUQ-YCf_xtBmA9BsGX7dis",
       authDomain: "snoozewave-comments.firebaseapp.com",
+      databaseURL: "https://snoozewave-comments-default-rtdb.firebaseio.com",
       projectId: "snoozewave-comments",
       storageBucket: "snoozewave-comments.firebasestorage.app",
       messagingSenderId: "604975879327",
       appId: "1:604975879327:web:ed61ec0bf858734808feaa",
-      measurementId: "G-YCRMRYBL0F",
-      databaseURL: "https://snoozewave-comments-default-rtdb.firebaseio.com"
+      measurementId: "G-YCRMRYBL0F"
     };
 
-    // Initialisieren
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-const avatarColors = ['#f87171', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa', '#f472b6'];
 
-
-    async function loadComments() {
-      try {
-        const snapshot = await db.ref("comments").once("value");
-        const comments = snapshot.val() || [];
-
-        const container = document.getElementById("comments-container");
-  const archived = document.getElementById("answered-container");
-  archived.innerHTML = "";
-        container.innerHTML = "";
-
-        
-comments.forEach((entry, index) => {
-  const box = document.createElement("div");
-  box.className = "comment-box";
-
-  const avatar = document.createElement("div");
-  avatar.style.width = "40px";
-  avatar.style.height = "40px";
-  avatar.style.borderRadius = "50%";
-  avatar.style.background = avatarColors[index % avatarColors.length];
-  avatar.style.flexShrink = "0";
-  box.appendChild(avatar);
-
-  const content = document.createElement("div");
-  content.style.flexGrow = "1";
-  content.style.display = "flex";
-  content.style.flexDirection = "column"; content.style.justifyContent = "space-between"; content.style.height = "100%";
-  content.style.gap = "0.5rem";
-  const name = document.createElement("strong"); name.textContent = "Anonym";
-const text = document.createElement("div"); text.textContent = entry.text || "";
-content.appendChild(name);
-content.appendChild(text);
-
-  if (entry.status === "archived") {
-    
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Löschen";
-  deleteBtn.style.marginTop = "0.5rem";
-  deleteBtn.style.background = "#dc2626";
-  deleteBtn.style.color = "white";
-  deleteBtn.style.border = "none";
-  deleteBtn.style.borderRadius = "6px";
-  deleteBtn.style.padding = "6px 12px";
-  deleteBtn.style.cursor = "pointer";
-  deleteBtn.onclick = async () => {
-    const snapshot = await db.ref("comments").once("value");
-    const current = snapshot.val() || [];
-    current.splice(index, 1);
-    await db.ref("comments").set(current);
-  };
-  const btnRow = document.createElement("div");
-    btnRow.style.display = "flex"; btnRow.style.justifyContent = "flex-end"; btnRow.style.marginTop = "auto";
-    btnRow.style.justifyContent = "flex-end";
-    btnRow.appendChild(deleteBtn);
-    content.appendChild(btnRow); box.appendChild(content);
-  document.getElementById("answered-container").appendChild(box);
-  } else {
-    const archiveBtn = document.createElement("button");
-    archiveBtn.textContent = "Beantworten";
-    archiveBtn.style.marginTop = "0.5rem";
-    archiveBtn.style.background = "#7c3aed";
-    archiveBtn.style.color = "white";
-    archiveBtn.style.border = "none";
-    archiveBtn.style.borderRadius = "6px";
-    archiveBtn.style.padding = "6px 12px";
-    archiveBtn.style.cursor = "pointer";
-    archiveBtn.onclick = async () => {
-      const snapshot = await db.ref("comments").once("value");
-      const current = snapshot.val() || [];
-      current[index].status = "archived";
-      await db.ref("comments").set(current);
-    };
-    const btnRow = document.createElement("div");
-    btnRow.style.display = "flex"; btnRow.style.justifyContent = "flex-end"; btnRow.style.marginTop = "auto";
-    btnRow.style.justifyContent = "flex-end";
-    btnRow.appendChild(archiveBtn);
-    content.appendChild(btnRow); box.appendChild(content);
-    container.appendChild(box);
-  }
-
-        });
-      } catch (error) {
-        console.error("Fehler beim Laden der Kommentare:", error);
+    function checkPassword() {
+      const input = document.getElementById("pw").value;
+      if (input === "snusadmin1") {
+        document.getElementById("overlay").style.display = "none";
+        loadComments();
+        setInterval(loadComments, 2000);
+      } else {
+        document.getElementById("pw-msg").textContent = "Falsches Passwort – keine Chance 😅";
       }
     }
 
-    loadComments(); // Initial
-    setInterval(loadComments, 500); // alle 2 Sekunden
-  
+    async function loadComments() {
+      const snapshot = await db.ref("comments").once("value");
+      const raw = snapshot.val() || {};
+      const comments = Array.isArray(raw) ? raw : Object.entries(raw);
 
-</script>
+      const container = document.getElementById("comments-container");
+      container.innerHTML = "";
 
-<script>
-  const toggleBtn = document.getElementById("toggle-archive");
-  const archiveContainer = document.getElementById("answered-container");
+      comments.forEach(([key, entry]) => {
+        const box = document.createElement("div");
+        box.className = "comment";
+        box.textContent = entry.text || "[kein Text]";
 
-  toggleBtn.addEventListener("click", () => {
-    const isHidden = archiveContainer.style.display === "none";
-    archiveContainer.style.display = isHidden ? "block" : "none";
-    toggleBtn.textContent = isHidden ? "▼" : "▲";
-  });
+        const btn = document.createElement("button");
+        btn.className = "delete-btn";
+        btn.textContent = "Löschen";
+        btn.onclick = async () => {
+          await db.ref("comments").child(key).remove();
+          box.remove();
+        };
 
-
-</script>
+        box.appendChild(btn);
+        container.appendChild(box);
+      });
+    }
+  </script>
 </body>
+</html>
 
 </html>
