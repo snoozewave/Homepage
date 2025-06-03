@@ -1,157 +1,273 @@
-
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>SnoozeWave – About</title>
-<link href="css/style.css" rel="stylesheet"/>
-<script defer="" src="js/script.js"></script>
-<style>
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main {
-    flex: 1;
-}
-footer {
-    margin-top: auto;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über uns – SnoozeWave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #9e7eff;
+      --bg: linear-gradient(135deg, #e0d1e6 0%, #f2e4f7 100%);
+      --text: #222;
+      --muted: #666;
+      --radius: 1.5rem;
+      --position: fixed;
+    }
 
-body { font-family: 'Minecraft', monospace !important; }
-body {
-    font-family: 'Minecraft', monospace !important;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-header {
-    background-color: #e7dcff;
-    border-bottom: 2px solid #c9b6ff;
-}
-footer {
-    background-color: #f0e4ff;
-    border-top: 2px solid #d7bfff;
-    color: #5e2b97;
-    text-align: center;
-    padding: 1rem 0;
-}
-button, .faq-question, .buy-button {
-    background-color: #d7bfff !important;
-    border: 2px solid #b589f9 !important;
-    color: #1d042b !important;
-}
-button:hover {
-    background-color: #e7d0ff !important;
-}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-button, .faq-question, .buy-button {
-    background-color: #d7bfff !important;
-    border: none !important;
-    color: #1d042b !important;
-    border-radius: 12px;
-    padding: 0.6rem 1.2rem;
-}
-button:hover {
-    background-color: #e7d0ff !important;
-}
+    header {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-body, button, .faq-question, .buy-button, h1, h2, h3, h4, h5, h6, p, a, td, th {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-}
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-main {
-    flex: 1;
-}
-footer {
-    margin-top: auto;
-    padding: 1rem 0;
-    background-color: #f0e4ff;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #5e2b97;
-    border-top: 2px solid #d7bfff;
-}
-button, .faq-question, .buy-button {
-    font-size: 1rem !important;
-    padding: 0.75rem 1.5rem !important;
-    border-radius: 12px !important;
-}
+    .background-circles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.2;
+    }
 
-.faq-answer {
-    padding: 1rem;
-    margin: 0;
-    background-color: #eadcff;
-    border-radius: 12px;
-    border: none;
-    box-shadow: none;
-    font-size: 1rem;
-    color: #1d042b;
-}
+    .waves {
+      display: none;
+    }
 
-html {
-    scroll-behavior: smooth;
-}
-body, p, li, a, td, th {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-h1 {
-    font-size: 2.5rem;
-}
-h2 {
-    font-size: 2rem;
-}
-h3 {
-    font-size: 1.6rem;
-}
-button, .faq-question, .buy-button {
-    font-size: 1.1rem !important;
-    padding: 1rem 1.75rem !important;
-}
+    .waves circle {
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 1;
+    }
 
-.faq-question {
-    transition: all 0.3s ease-in-out !important;
-}
-.faq-question:hover {
-    transform: scale(1.05);
-    background-color: #c9b6ff !important;
-    box-shadow: 0 0 12px rgba(150, 100, 255, 0.4);
-}
-</style></head>
-<body><header>
-<div class="logo-area">
-<div class="logo-placeholder"><img alt="Bild" src="/8000x_transparent.png" style="max-width:100%;border-radius:12px;margin:1rem 0;"/></div>
-<div class="logo-text">SnoozeWave</div>
-</div>
-<nav style="display: flex; justify-content: center;">
-<ul style="display: flex; gap: 2rem; justify-content: center; list-style: none; padding: 0;">
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Shop</a></li>
-<li><a href="about.html">Über Uns</a></li>
-<li><a href="questions.html">Fragen</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-</nav>
-</header><main>
-<section class="about" style="text-align: center; animation: fadeIn 1s ease-in-out;"><h2>Das SnoozeWave Team</h2><p>Unsere Mission ist es, Menschen weltweit zu besserem Schlaf und damit zu mehr Lebensqualität zu verhelfen.</p><div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;"><div style="text-align:center; width:200px;"><img alt="Lukas" src="/lukas.png" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:12px;"/><p style="margin-top: 0.5rem; font-weight: bold;">Lukas - COO &amp; Data</p></div><div style="text-align:center; width:200px;"><img alt="Lukas" src="/simon.png" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:12px;"/><p style="margin-top: 0.5rem; font-weight: bold;">Simon - CFO &amp; Partnership</p></div><div style="text-align:center; width:200px;"><img alt="Sara" src="/maxl.png" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:12px;"/><p style="margin-top: 0.5rem; font-weight: bold;">Maximilian - CEO &amp; Qualität</p></div><div style="text-align:center; width:200px;"><img alt="Valentin" src="/valentin.png" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:12px;"/><p style="margin-top: 0.5rem; font-weight: bold;">Valentin - CTO &amp; CPO</p></div></div><div style="margin-top: 4rem; animation: fadeIn 1.2s ease-in-out;"><h3>Hierauf legen wir als SnoozeWave Wert:</h3><div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;"><div style="width: 250px;"><button class="faq-question" style="">Innovation</button><div class="faq-answer">Wir entwickeln kontinuierlich neue Ideen und Technologien, um Ihre Schlafqualität nachhaltig zu verbessern.</div></div><div style="width: 250px;"><button class="faq-question" style="">Empathie</button><div class="faq-answer">Wir hören auf unsere Kunden und gestalten Produkte, die echte Bedürfnisse erfüllen.</div></div><div style="width: 250px;"><button class="faq-question" style="">Zuverlässigkeit</button><div class="faq-answer">Unsere Produkte sind langlebig, getestet und bieten höchste Qualität.</div></div><div style="width: 250px;"><button class="faq-question" style="">Teamgeist</button><div class="faq-answer">Wir arbeiten interdisziplinär und international, um die besten Lösungen zu schaffen.</div></div></div></div></section>
-</main><footer>
-<p>© 2025 SnoozeWave. Alle Rechte vorbehalten.</p>
-</footer></body>
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 6rem;
+    }
+
+    h1, h2 {
+      font-weight: 800;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    h69 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .team-member img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .team-member h3 {
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .team-member span {
+      color: var(--muted);
+    }
+
+    .usp-grid {
+      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .usp-item {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+      max-width: 250px;
+      text-align: center;
+    }
+
+    .usp-item h4 {
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    .cta {
+      margin-top: 2rem;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(158, 126, 255, 0.25);
+      transition: all 0.3s ease;
+      z-index: 1;
+
+      display: block;
+      margin: 4rem auto 0;
+      width: fit-content;
+    }
+
+    .cta:hover {
+      box-shadow: 0 15px 25px rgba(158, 126, 255, 0.35);
+      transform: translateY(-2px);
+    }
+  </style>
+
+<!-- AOS Animation Library -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({ duration: 1000, once: true });
+  });
+</script>
+
+</head>
+<body>
+<header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379147609712627763/8000x_transparent.png?ex=683f2ecd&is=683ddd4d&hm=10d82b48f419b06fe7ebbc6fe41321cf75597928df2e6d3565c13c2a41ad8670&=&format=webp&quality=lossless&width=934&height=934" alt="Logo" style="height: 40px; width: 40px;" />
+      <h2 data-aos="fade-up">SnoozeWave</h2>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Über uns</a>
+      <a href="faq.html">Fragen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+
+  <svg class="background-circles" viewBox="0 0 600 600">
+    <circle cx="300" cy="300" r="60" stroke="var(--primary)" stroke-width="0.4" fill="none" />
+    <circle cx="300" cy="300" r="120" stroke="var(--primary)" stroke-width="0.4" fill="none" />
+    <circle cx="300" cy="300" r="180" stroke="var(--primary)" stroke-width="0.4" fill="none" />
+    <circle cx="100" cy="200" r="12" stroke="var(--primary)" stroke-width="0.4" fill="none" />
+    <circle cx="500" cy="400" r="10" stroke="var(--primary)" stroke-width="0.4" fill="none" />
+  </svg>
+
+  <main>
+    <section data-aos="fade-up">
+      <h1>Wer wir sind</h1>
+      <p data-aos="fade-up">Wir sind ein junges, engagiertes Team mit einer gemeinsamen Mission: Schlaf durch Technologie und Design neu zu definieren.</p>
+    </section>
+
+    <section data-aos="fade-up">
+      <h2 data-aos="fade-up">Unsere Mission</h2>
+      <p data-aos="fade-up">Wir glauben, dass guter Schlaf nicht kompliziert sein muss. Deshalb kombinieren wir neueste Technik mit nachhaltigem Design – für ein gesünderes, besseres Leben.</p>
+    </section>
+
+    <section data-aos="fade-up">
+      <h2 data-aos="fade-up">Unser Team</h2>
+      <div data-aos="fade-up" class="team-grid">
+        <div data-aos="fade-up" class="team-member">
+          <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379148815159922759/lukas.png?ex=683f2fec&is=683dde6c&hm=d9da291a75db26fce11d46400e80a6ff5341cedb43b12fb45584dae0ec88b218&=&format=webp&quality=lossless&width=830&height=830" alt="Lukas" />
+          <h3 data-aos="fade-up">Lukas</h3>
+          <span>COO & Data</span>
+        </div>
+        <div data-aos="fade-up" class="team-member">
+          <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379148814560002098/simon.png?ex=683f2fec&is=683dde6c&hm=a13bcb9dd9d2bf272afa288fa8acfa32db61e86646ee634517aa8fc25cd853a9&=&format=webp&quality=lossless&width=830&height=830" alt="Simon" />
+          <h3 data-aos="fade-up">Simon</h3>
+          <span>CFO & Partnerschaften</span>
+        </div>
+        <div data-aos="fade-up" class="team-member">
+          <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379148814149091338/maxl.png?ex=683f2fec&is=683dde6c&hm=a30f186ef1adf16de8cc771381d32d36de4b8253c0dc1d482bcb972313c30b2a&=&format=webp&quality=lossless&width=830&height=830" alt="Maximilian" />
+          <h3 data-aos="fade-up">Maximilian</h3>
+          <span>CEO & Qualität</span>
+        </div>
+        <div data-aos="fade-up" class="team-member">
+          <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379148813696241775/valentin.png?ex=683f2fec&is=683dde6c&hm=d495cd40bd0402f6840519a1a79735bc8c32dd57f042fd14b30943f6260d4b23&=&format=webp&quality=lossless&width=830&height=830" alt="Valentin" />
+          <h3 data-aos="fade-up">Valentin</h3>
+          <span>CTO & CPO</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-aos="fade-up">
+      <h2 data-aos="fade-up">Was uns auszeichnet</h2>
+      <div data-aos="fade-up" class="usp-grid">
+        <div data-aos="fade-up" class="usp-item">
+          <h69>🌿</h69>
+          <h4>Nachhaltigkeit</h4>
+          <p data-aos="fade-up">Unsere Produkte sind auf Langlebigkeit ausgelegt – ökologisch, hochwertig, bewusst.</p>
+        </div>
+        <div data-aos="fade-up" class="usp-item">
+          <h69>🌙</h69>
+          <h4>Technologie & Forschung</h4>
+          <p data-aos="fade-up">Wir arbeiten mit Schlafexperten und Datenmodellen für optimale Erholung.</p>
+        </div>
+        <div data-aos="fade-up" class="usp-item">
+          <h69>💎</h69>
+          <h4>Design & Qualität</h4>
+          <p data-aos="fade-up">Minimalistisch, intuitiv, edel. Für ein Erlebnis, das auch tagsüber begeistert.</p>
+        </div>
+      </div>
+    </section class="hero">
+<section data-aos="fade-up">
+    <a href="kontakt.html" class="cta">Kontaktiere uns →</a>
+</section>
+  </main>
+</body>
 </html>
