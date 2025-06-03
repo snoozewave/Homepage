@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – SnoozeWave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #9e7eff;
+      --bg: linear-gradient(135deg, #e0d1e6 0%, #f2e4f7 100%);
+      --text: #222;
+      --muted: #666;
+      --radius: 1.5rem;
+      --position: fixed;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+min-height: 100vh;
+    }
+
+    header {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    main {
+      padding: 4rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    textarea {
+      padding: 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(158, 126, 255, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      box-shadow: 0 15px 25px rgba(158, 126, 255, 0.35);
+      transform: translateY(-2px);
+      background: #8762f3;
+    }
+
+    .message {
+      margin-top: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--primary);
+      text-decoration: none;
+      border: 2px solid var(--primary);
+      transition: all 0.35s ease;
+    }
+
+    .cta:hover {
+      background: var(--primary);
+      color: white;
+    }
+  </style>
+
+<!-- AOS Animation Library -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    AOS.init({ duration: 1000, once: true });
+  });
+</script>
+
+</head>
+<body>
+<header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379147609712627763/8000x_transparent.png?ex=683f2ecd&is=683ddd4d&hm=10d82b48f419b06fe7ebbc6fe41321cf75597928df2e6d3565c13c2a41ad8670&=&format=webp&quality=lossless&width=934&height=934" alt="Logo" style="height: 40px; width: 40px;" />
+      <h2 data-aos="fade-up">SnoozeWave</h2>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">Über uns</a>
+      <a href="faq.html">Fragen</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </header>
+
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const firebaseConfig = {
+        apiKey: "AIzaSyB0JSeJD3M-IAUQ-YCf_xtBmA9BsGX7dis",
+        authDomain: "snoozewave-comments.firebaseapp.com",
+        projectId: "snoozewave-comments",
+        storageBucket: "snoozewave-comments.firebasestorage.app",
+        messagingSenderId: "604975879327",
+        appId: "1:604975879327:web:ed61ec0bf858734808feaa",
+        measurementId: "G-YCRMRYBL0F",
+        databaseURL: "https://snoozewave-comments-default-rtdb.firebaseio.com"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.database();
+
+      const form = document.getElementById("comment-form");
+      const input = document.getElementById("comment-input");
+      const success = document.getElementById("successMessage");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+
+        try {
+          await db.ref("comments").push({ text });
+          input.value = "";
+          success.textContent = "Danke für deine Nachricht!";
+        } catch (err) {
+          console.error(err);
+          alert("Fehler beim Senden.");
+        }
+      });
+    });
+  </script>
+  <main>
+    <h1>Kontaktiere uns</h1>
+    <p data-aos="fade-up" class="lead">Du hast Fragen, Feedback oder Interesse an SnoozeWave? Schreib uns gern!</p>
+    <form id="comment-form">
+      <textarea id="comment-input" rows="5" placeholder="Deine Nachricht" required></textarea>
+      <button type="cta">Absenden</button>
+    </form>
+    <div id="successMessage" class="message"></div>
+
+    <div style="margin-top: 4rem;">
+      <a href="index.html" class="cta">Zurück zur Startseite</a>
+    </div>
+  </main>
+</body>
+</html>
