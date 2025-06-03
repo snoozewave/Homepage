@@ -8,6 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+.typed-cursor {
+  font-weight: normal;
+  font-size: 1.8rem;
+  color: #7f5af0;
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
     :root {
       --primary: #9e7eff;
       --bg: linear-gradient(135deg, #e0d1e6 0%, #f2e4f7 100%);
@@ -32,6 +43,40 @@
     }
 
     header {
+  position: relative;
+
+#nav-toggle {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text, #000);
+  display: none;
+  z-index: 1000;
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
+}
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    padding: 1rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    z-index: 999;
+  }
+  nav.open {
+    display: flex;
+  }
+  #nav-toggle {
+    display: block;
+  }
+}
+
       padding: 2rem 4rem;
       display: flex;
       justify-content: space-between;
@@ -135,7 +180,7 @@ z-index: 1;
  }
   .desktop {
        display: block;
-margin-top: -8rem;
+margin-top: -10rem;
 z-index: 1;
        max-width: 150vh;
  
@@ -223,12 +268,15 @@ display: block;
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <header data-aos="fade">
-    <div style="display: flex; align-items: center; gap: 1rem;" data-aos="fade">
-      <img src="https://media.discordapp.net/attachments/1285987035844444231/1379147609712627763/8000x_transparent.png?ex=683f2ecd&is=683ddd4d&hm=10d82b48f419b06fe7ebbc6fe41321cf75597928df2e6d3565c13c2a41ad8670&=&format=webp&quality=lossless&width=934&height=934" alt="Logo" style="height: 40px; width: 40px;" />
-      <h2>SnoozeWave</h2>
+  <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <img src="/images/8000x_transparent.png" alt="Logo" style="height: 40px; width: 40px;" />
+          <a href="index.html" style="text-decoration: none; color: inherit;">
+      <h2 style="margin: 0;">SnoozeWave</h2>
+    </a>
     </div>
-    <nav>
+    <button id="nav-toggle" aria-label="Menü öffnen">☰</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">Über uns</a>
@@ -237,8 +285,11 @@ display: block;
     </nav>
   </header>
   <section class="hero" data-aos="fade">
-    <h1>
-  <h2 id="typed-text" style="color:#7f5af0; font-weight:normal;"></h2>Schlauer schlafen, besser leben</h1>
+    
+<h1 style="text-align: center; font-size: 3rem; margin-bottom: 0rem;">Das innovative Smart-Kissen der Zukunft</h1>
+<h2 style="text-align:center;"><span id="typed-text" style="color:#7f5af0; font-weight:normal; text-align:center;"></span></h2>
+<p style="text-align:center; font-size: 1.2rem;">Schlauer schlafen, besser leben</p>
+
     <p>Innovative Schlaftechnologie für besseren Schlaf</p>
     <a href="shop.html" class="cta">Jetzt kaufen →</a>
     <img
@@ -267,16 +318,9 @@ display: block;
 <section class="plantmobile" data-aos="fade"></section>
 <section class="plantdesktop" data-aos="fade"></section>
 
-<!-- Neue Sektion: App-Kompatibilität -->
-<section style="padding: 80px 20px; text-align: center;" data-aos="fade">
-  <h2>Synchronisiert mit deiner App</h2>
-  <p style="max-width: 600px; margin: 20px auto;">Steuere dein Kissen, passe die Temperatur an und tracke deine Schlafqualität – alles bequem über dein Smartphone.</p>
-  <img src="assets/app-preview.png" alt="App Vorschau" style="max-width: 300px; margin-top: 30px;">
-</section>
-
 <!-- Neue Sektion: Kundenstimmen -->
 <section style="padding: 80px 20px; text-align: center;" data-aos="fade">
-  <h2>Was unsere Nutzer sagen</h2>
+  <h2>Was unsere Nutzer sagen</span></h2>
   <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px;" data-aos="fade">
     <div style="max-width: 300px;" data-aos="fade">
       <p>"Endlich wieder durchschlafen – danke SnoozeWave!"</p>
@@ -293,32 +337,18 @@ display: block;
   </div>
 </section>
 
-<!-- Neue Sektion: Technologie im Inneren -->
-<section style="padding: 80px 20px; text-align: center;" data-aos="fade">
-  <h2>Intelligente Technologie im Inneren</h2>
-  <p style="max-width: 600px; margin: 20px auto;">SnoozeWave nutzt smarte Sensoren und Algorithmen, um deine ideale Schlaftemperatur automatisch zu regulieren – die ganze Nacht hindurch.</p>
-  <img src="assets/tech-inside.png" alt="Technologie Grafik" style="max-width: 400px; margin-top: 30px;">
-</section>
-
-<!-- Neue Sektion: Umweltfreundlich produziert -->
-<section style="padding: 80px 20px; text-align: center;" data-aos="fade">
-  <h2>Nachhaltigkeit trifft Innovation</h2>
-  <p style="max-width: 600px; margin: 20px auto;">Gefertigt in Athen mit regionalen, umweltschonenden Materialien. Unser Anspruch: High-End-Komfort mit gutem Gewissen.</p>
-  <img src="assets/eco-production.jpg" alt="Nachhaltige Produktion" style="max-width: 400px; border-radius: 12px; margin-top: 30px;">
-</section>
-
 <!-- Neue Sektion: Kompatibel mit deinem Leben -->
 <section style="padding: 80px 20px; text-align: center;" data-aos="fade">
-  <h2>Dein Alltag. Dein Rhythmus.</h2>
+  <h2>Dein Alltag. Dein Rhythmus.</span></h2>
   <p style="max-width: 600px; margin: 0 auto;">Ob Powernap, Abendroutine oder Langschläfer – SnoozeWave passt sich dir an.</p>
 </section>
 
 <!-- Neue Sektion: Kompakte Fakten -->
 <section style="padding: 80px 20px; text-align: center;" data-aos="fade">
-  <h2>Auf einen Blick</h2>
+  <h2>Auf einen Blick</span></h2>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px;" data-aos="fade">
-    <div data-aos="fade"><h3>30+ Nächte Akkulaufzeit</h3></div>
-    <div data-aos="fade"><h3>100% Recycelte Materialien</h3></div>
+    <div data-aos="fade"><h3>Nächtelange Akkulaufzeit</h3></div>
+    <div data-aos="fade"><h3>100% Recycelbare Materialien</h3></div>
     <div data-aos="fade"><h3>1 App, alle Funktionen</h3></div>
   </div>
 </section>
@@ -326,27 +356,27 @@ display: block;
 
 <!-- Shape Divider Section -->
 <section style="position: relative; padding: 100px 20px; text-align: center; background: linear-gradient(to bottom, #f6f6ff, #ffffff);" data-aos="fade-up">
-  <h2>Warum SnoozeWave?</h2>
+  <h2>Warum SnoozeWave?</span></h2>
   <p style="max-width: 600px; margin: 20px auto;">Ein Kissen, das mehr kann – für besseren Schlaf, smarte Steuerung und stilvolles Design.</p>
   <svg viewBox="0 0 1440 320" style="position:absolute; bottom:0; left:0; width:100%; height:100px;"><path fill="#ffffff" fill-opacity="1" d="M0,224L48,192C96,160,192,96,288,74.7C384,53,480,75,576,106.7C672,139,768,181,864,181.3C960,181,1056,139,1152,128C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
 </section>
 
 <!-- Feature Cards Section -->
 <section style="padding: 80px 20px; text-align: center; background-color: #fff;" data-aos="fade-up">
-  <h2>Unsere Highlights</h2>
+  <h2>Unsere Highlights</span></h2>
   <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 40px;" data-aos="fade">
     <div style="background: #f2f2fb; padding: 30px; border-radius: 16px; width: 280px;" data-aos="zoom-in">
-      <img src="assets/icon-temp.svg" alt="Temperatur Icon" style="width: 40px; margin-bottom: 20px;">
+      <img src="images/icon-temp.png" alt="Temperatur Icon" style="width: 40px; margin-bottom: 20px;">
       <h3>Adaptive Temperatur</h3>
       <p>Reagiert auf deine Körpertemperatur und passt sich automatisch an.</p>
     </div>
     <div style="background: #f2f2fb; padding: 30px; border-radius: 16px; width: 280px;" data-aos="zoom-in" data-aos-delay="100">
-      <img src="assets/icon-app.svg" alt="App Icon" style="width: 40px; margin-bottom: 20px;">
+      <img src="images/icon-app.png" alt="App Icon" style="width: 40px; margin-bottom: 20px;">
       <h3>Voll App-gesteuert</h3>
       <p>Stelle dein Kissen nach deinen Wünschen per Smartphone ein.</p>
     </div>
     <div style="background: #f2f2fb; padding: 30px; border-radius: 16px; width: 280px;" data-aos="zoom-in" data-aos-delay="200">
-      <img src="assets/icon-eco.svg" alt="Eco Icon" style="width: 40px; margin-bottom: 20px;">
+      <img src="images/icon-eco.png" alt="Eco Icon" style="width: 40px; margin-bottom: 20px;">
       <h3>Nachhaltige Materialien</h3>
       <p>Produziert in Europa aus umweltfreundlichen Stoffen.</p>
     </div>
@@ -355,12 +385,25 @@ display: block;
 
 <!-- Call to Action Section -->
 <section style="padding: 100px 20px; text-align: center; background-color: #7f5af0; color: white;" data-aos="fade-in">
-  <h2>Bist du bereit für besseren Schlaf?</h2>
+  <h2>Bist du bereit für besseren Schlaf?</span></h2>
   <p style="max-width: 600px; margin: 20px auto;">SnoozeWave bringt dich jeden Abend in deine Wohlfühlzone. Bequem. Smart. Nachhaltig.</p>
   <a href="about.html" style="margin-top: 30px; padding: 15px 30px; background: white; color: #7f5af0; font-weight: bold; border-radius: 12px; text-decoration: none; display: inline-block;">Mehr erfahren</a>
 </section>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({ once: true, duration: 700 });</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("main-nav");
+  const toggle = document.getElementById("nav-toggle");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+    });
+  }
+});
+</script>
+
 </body>
 </html>

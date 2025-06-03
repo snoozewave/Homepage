@@ -32,6 +32,40 @@
     }
 
     header {
+  position: relative;
+
+#nav-toggle {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text, #000);
+  display: none;
+  z-index: 1000;
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
+}
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    padding: 1rem;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    z-index: 999;
+  }
+  nav.open {
+    display: flex;
+  }
+  #nav-toggle {
+    display: block;
+  }
+}
+
       padding: 2rem 4rem;
       display: flex;
       justify-content: space-between;
@@ -222,10 +256,13 @@
 <body>
 <header>
     <div style="display: flex; align-items: center; gap: 1rem;">
-      <img data-aos="zoom-in" src="https://media.discordapp.net/attachments/1285987035844444231/1379147609712627763/8000x_transparent.png?ex=683f2ecd&is=683ddd4d&hm=10d82b48f419b06fe7ebbc6fe41321cf75597928df2e6d3565c13c2a41ad8670&=&format=webp&quality=lossless&width=934&height=934" alt="Logo" style="height: 40px; width: 40px;" />
-      <h2 data-aos="fade-up">SnoozeWave</h2>
+      <img src="/images/8000x_transparent.png" alt="Logo" style="height: 40px; width: 40px;" />
+          <a href="index.html" style="text-decoration: none; color: inherit;">
+      <h2 style="margin: 0;">SnoozeWave</h2>
+    </a>
     </div>
-    <nav>
+    <button id="nav-toggle" aria-label="Menü öffnen">☰</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">Über uns</a>
@@ -316,6 +353,19 @@
       window.scrollTo({ top: topPos, behavior: 'smooth' });
     });
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("main-nav");
+  const toggle = document.getElementById("nav-toggle");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+    });
+  }
+});
+</script>
+
 </body>
 </html>
 
