@@ -125,12 +125,12 @@
     <div id="pw-box">
       <h2>🔐 Admin Zugang</h2>
       <input type="password" id="pw" placeholder="Passwort eingeben">
-      <button onclick="checkPassword()">Los!</button>
+      <button onclick="checkPassword()">Login</button>
       <p id="pw-msg" style="color:red; margin-top: 0.5rem;"></p>
     </div>
   </div>
 
-  <h1>📋 Live-Kommentare verwalten</h1>
+  <h1>📋 Live-Kommentare</h1>
   <div id="comments-container">⏳ Kommentare werden geladen...</div>
 
   <script>
@@ -150,12 +150,12 @@
 
     function checkPassword() {
       const input = document.getElementById("pw").value;
-      if (input === "snusadmin1") {
+      if (input === "snusadmin2") {
         document.getElementById("overlay").style.display = "none";
         loadComments();
         setInterval(loadComments, 2000);
       } else {
-        document.getElementById("pw-msg").textContent = "Falsches Passwort – keine Chance 😅";
+        document.getElementById("pw-msg").textContent = "Falsches Passwort :(";
       }
     }
 
